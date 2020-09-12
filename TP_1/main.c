@@ -44,7 +44,6 @@ int main()
 
         printf("\n3. Calcular todas las operaciones\n4. Informar resultados\n5. Salir");
         printf("\n#################################\n\n");
-        fflush(stdin);
         scanf("%d", &opcion);
 
         switch (opcion) {
