@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1599880524 source:c:\users\santy\desktop\tp_laboratorio_1\tp_1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"aritmetica.h"
+
+1599879053 source:c:\users\santy\desktop\tp_laboratorio_1\tp_1\aritmetica.c
+	"aritmetica.h"
+
+1599840411 c:\users\santy\desktop\tp_laboratorio_1\tp_1\aritmetica.h
+
