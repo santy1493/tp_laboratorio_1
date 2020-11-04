@@ -178,7 +178,7 @@
 	"LinkedList.h"
 	"Employee.h"
 
-1604452240 source:c:\users\santy\desktop\tp_laboratorio_1\tp3\controller.c
+1604456888 source:c:\users\santy\desktop\tp_laboratorio_1\tp3\controller.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
@@ -189,16 +189,17 @@
 
 1533118622 c:\users\santy\desktop\tp_laboratorio_1\tp3\parser.h
 
-1604452241 c:\users\santy\desktop\tp_laboratorio_1\tp3\employee.h
+1604455638 c:\users\santy\desktop\tp_laboratorio_1\tp3\employee.h
 
-1604452241 source:c:\users\santy\desktop\tp_laboratorio_1\tp3\employee.c
+1604456546 source:c:\users\santy\desktop\tp_laboratorio_1\tp3\employee.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	<ctype.h>
 	"LinkedList.h"
 	"Employee.h"
 
-1604452241 source:c:\users\santy\desktop\tp_laboratorio_1\tp3\main.c
+1604456888 source:c:\users\santy\desktop\tp_laboratorio_1\tp3\main.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
@@ -207,7 +208,7 @@
 
 1604452240 c:\users\santy\desktop\tp_laboratorio_1\tp3\controller.h
 
-1604452241 source:c:\users\santy\desktop\tp_laboratorio_1\tp3\parser.c
+1604454625 source:c:\users\santy\desktop\tp_laboratorio_1\tp3\parser.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"

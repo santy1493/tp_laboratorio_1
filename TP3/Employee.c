@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "LinkedList.h"
 #include "Employee.h"
 
@@ -177,6 +178,13 @@ void modificarHorasTrabajadas(Employee* this)
     fflush(stdin);
     scanf("%d", &horas);
 
+    while(horas<0)
+    {
+        printf("\nLas horas deben ser mayor a 0. Ingrese nuevas horas trabajadas: ");
+        fflush(stdin);
+        scanf("%d", &horas);
+    }
+
     setteo = employee_setHorasTrabajadas(this, horas);
 
     if(setteo==0)
@@ -193,6 +201,13 @@ void modificarSueldo(Employee* this)
     printf("\nIngrese nuevo sueldo: ");
     fflush(stdin);
     scanf("%d", &sueldo);
+
+    while(sueldo<0)
+    {
+        printf("\nEl sueldo debe ser mayor a 0. Ingrese nuevo sueldo: ");
+        fflush(stdin);
+        scanf("%d", &sueldo);
+    }
 
     setteo = employee_setSueldo(this, sueldo);
 
@@ -219,9 +234,13 @@ void imprimirUnEmpleado(Employee* this)
     printf("%5d %40s %27d %22d\n\n", id, nombre, horasTrabajadas, sueldo);
 }
 
-int employee_compareById(Employee* unEmpleado, Employee* otroEmpleado)
+int employee_compareById(void* empleadoUno, void* empleadoDos)
 {
     int compara = 0;
+
+    Employee* unEmpleado = empleadoUno;
+    Employee* otroEmpleado = empleadoDos;
+
     int unEmpleadoId;
     int otroEmpleadoId;
 
@@ -242,22 +261,26 @@ int employee_compareById(Employee* unEmpleado, Employee* otroEmpleado)
     return compara;
 }
 
-int employee_compareByNombre(Employee* unEmpleado, Employee* otroEmpleado)
+int employee_compareByNombre(void* empleadoUno, void* empleadoDos)
 {
     int compara = 0;
+
+    Employee* unEmpleado = empleadoUno;
+    Employee* otroEmpleado = empleadoDos;
+
     char unEmpleadoNombre[128];
     char otroEmpleadoNombre[128];
 
     employee_getNombre(unEmpleado, unEmpleadoNombre);
     employee_getNombre(otroEmpleado, otroEmpleadoNombre);
 
-    if(strcmp(unEmpleadoNombre, otroEmpleadoNombre)>0)
+    if(strcmp(strlwr(unEmpleadoNombre), strlwr(otroEmpleadoNombre))>0)
     {
         compara = 1;
     }
     else
     {
-        if(strcmp(unEmpleadoNombre, otroEmpleadoNombre)<0)
+        if(strcmp(strlwr(unEmpleadoNombre), strlwr(otroEmpleadoNombre))<0)
         {
             compara = -1;
         }
@@ -265,9 +288,13 @@ int employee_compareByNombre(Employee* unEmpleado, Employee* otroEmpleado)
     return compara;
 }
 
-int employee_compareByHorasTrabajadas(Employee* unEmpleado, Employee* otroEmpleado)
+int employee_compareByHorasTrabajadas(void* empleadoUno, void* empleadoDos)
 {
     int compara = 0;
+
+    Employee* unEmpleado = empleadoUno;
+    Employee* otroEmpleado = empleadoDos;
+
     int unEmpleadoHorasTrabajadas;
     int otroEmpleadoHorasTrabajadas;
 
@@ -288,9 +315,13 @@ int employee_compareByHorasTrabajadas(Employee* unEmpleado, Employee* otroEmplea
     return compara;
 }
 
-int employee_compareBySueldo(Employee* unEmpleado, Employee* otroEmpleado)
+int employee_compareBySueldo(void* empleadoUno, void* empleadoDos)
 {
     int compara = 0;
+
+    Employee* unEmpleado = empleadoUno;
+    Employee* otroEmpleado = empleadoDos;
+
     int unEmpleadoSueldo;
     int otroEmpleadoSueldo;
 
@@ -389,4 +420,45 @@ void crearIdStr(char* idStr, LinkedList* this)
 
     sprintf(idStr, "%d", id);
 }
+
+int validarNumero(char numero[])
+{
+    int i;
+    int len;
+    int esNumero = 1;
+
+    len = strlen(numero);
+
+    for(i=0;i<len;i++)
+    {
+        if(isdigit(numero[i])==0)
+        {
+            esNumero = 0;
+            break;
+        }
+    }
+
+    return esNumero;
+}
+
+int validarNombre(char nombre[])
+{
+    int i;
+    int len;
+    int esNombre = 1;
+
+    len = strlen(nombre);
+
+    for(i=0;i<len;i++)
+    {
+        if(isalpha(nombre[i])==0)
+        {
+            esNombre = 0;
+            break;
+        }
+    }
+
+    return esNombre;
+}
+
 

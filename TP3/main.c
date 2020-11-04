@@ -22,6 +22,7 @@
 int main()
 {
     int option = 0;
+    int guardadoExito = 0;
     LinkedList* listaEmpleados = ll_newLinkedList();
 
 
@@ -35,7 +36,7 @@ int main()
                 controller_loadFromText("data.csv",listaEmpleados);
                 break;
             case 2:
-                controller_loadFromBinary("databin.csv", listaEmpleados);
+                controller_loadFromBinary("data.csv", listaEmpleados);
                 break;
             case 3:
                 controller_addEmployee(listaEmpleados);
@@ -52,11 +53,29 @@ int main()
             case 7:
                 controller_sortEmployee(listaEmpleados);
                 break;
+
             case 8:
-                controller_saveAsText("data1.csv", listaEmpleados);
+                guardadoExito = controller_saveAsText("data.csv", listaEmpleados);
+                if(guardadoExito==1)
+                {
+                    printf("\n##Se guardo con exito el archivo\n\n");
+                }
+                else
+                {
+                    printf("\nNo se pudo guardar el archivo!!!\n\n");
+                }
                 break;
+
             case 9:
-                controller_saveAsBinary("databin.csv", listaEmpleados);
+                guardadoExito = controller_saveAsBinary("data.csv", listaEmpleados);
+                if(guardadoExito==1)
+                {
+                    printf("\n##Se guardo con exito el archivo\n\n");
+                }
+                else
+                {
+                    printf("\nNo se pudo guardar el archivo!!!\n\n");
+                }
                 break;
         }
     }while(option != 10);

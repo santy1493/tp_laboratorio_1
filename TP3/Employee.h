@@ -29,14 +29,16 @@ void modificarNombre(Employee* this);
 void modificarHorasTrabajadas(Employee* this);
 void modificarSueldo(Employee* this);
 
-int employee_compareById(Employee*, Employee*);
-int employee_compareByNombre(Employee*, Employee*);
-int employee_compareByHorasTrabajadas(Employee*, Employee*);
-int employee_compareBySueldo(Employee*, Employee*);
+int employee_compareById(void*, void*);
+int employee_compareByNombre(void*, void*);
+int employee_compareByHorasTrabajadas(void*, void*);
+int employee_compareBySueldo(void*, void*);
 
 int ordenar();
 
 void imprimirUnEmpleado(Employee* this);
 void crearIdStr(char* idStr, LinkedList* this);
+int validarNumero(char[]);
+int validarNombre(char[]);
 
 #endif // employee_H_INCLUDED

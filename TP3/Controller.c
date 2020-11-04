@@ -87,6 +87,8 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
     char nombre[50];
     char horasTrabajadas[20];
     char sueldo[20];
+    int esNumero = 0;
+    int esNombre = 0;
 
     crearIdStr(idStr, pArrayListEmployee);
 
@@ -94,13 +96,46 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
     fflush(stdin);
     gets(nombre);
 
+    esNombre = validarNombre(nombre);
+
+    while(esNombre==0)
+    {
+        printf("Nombre invalido. Ingrese nuevamente: ");
+        fflush(stdin);
+        gets(nombre);
+
+        esNombre = validarNombre(nombre);
+    }
+
     printf("Ingrese horas trabajadas: ");
     fflush(stdin);
     gets(horasTrabajadas);
 
+    esNumero = validarNumero(horasTrabajadas);
+
+    while(esNumero==0)
+    {
+        printf("Horas invalidas. Ingrese nuevamente: ");
+        fflush(stdin);
+        gets(horasTrabajadas);
+
+        esNumero = validarNumero(horasTrabajadas);
+    }
+
     printf("Ingrese sueldo: ");
     fflush(stdin);
     gets(sueldo);
+
+    esNumero = validarNumero(sueldo);
+
+    while(esNumero==0)
+    {
+        printf("Sueldo invalido. Ingrese nuevamente: ");
+        fflush(stdin);
+        gets(sueldo);
+
+        esNumero = validarNumero(sueldo);
+    }
 
     empleado = employee_newParametros(idStr, nombre, horasTrabajadas, sueldo);
 
