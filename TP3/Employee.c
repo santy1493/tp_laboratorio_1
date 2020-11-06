@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <math.h>
 #include "LinkedList.h"
 #include "Employee.h"
 
@@ -155,11 +156,23 @@ void modificarId(Employee* this)
 void modificarNombre(Employee* this)
 {
     char nombre[40];
+    int esNombre = 1;
     int setteo = 0;
 
     printf("\nIngrese nuevo nombre: ");
     fflush(stdin);
     gets(nombre);
+
+    esNombre = validarNombre(nombre);
+
+    while(esNombre == 0)
+    {
+        printf("\nNombre invalido. Ingrese nuevamente: ");
+        fflush(stdin);
+        gets(nombre);
+
+        esNombre = validarNombre(nombre);
+    }
 
     setteo = employee_setNombre(this, nombre);
 
@@ -171,21 +184,29 @@ void modificarNombre(Employee* this)
 
 void modificarHorasTrabajadas(Employee* this)
 {
-    int horas;
+    char horas[12];
+    int horasInt;
+    int esNumero;
     int setteo = 0;
 
     printf("\nIngrese nuevas horas trabajadas: ");
     fflush(stdin);
-    scanf("%d", &horas);
+    gets(horas);
 
-    while(horas<0)
+    esNumero = validarNumero(horas);
+
+    while(esNumero==0)
     {
-        printf("\nLas horas deben ser mayor a 0. Ingrese nuevas horas trabajadas: ");
+        printf("\nHoras trabajadas invalidas. Ingrese nuevamente: ");
         fflush(stdin);
-        scanf("%d", &horas);
+        gets(horas);
+
+        esNumero = validarNumero(horas);
     }
 
-    setteo = employee_setHorasTrabajadas(this, horas);
+    horasInt = atoi(horas);
+
+    setteo = employee_setHorasTrabajadas(this, horasInt);
 
     if(setteo==0)
     {
@@ -195,21 +216,29 @@ void modificarHorasTrabajadas(Employee* this)
 
 void modificarSueldo(Employee* this)
 {
-    int sueldo;
+    char sueldo[12];
+    int sueldoInt;
+    int esNumero;
     int setteo = 0;
 
     printf("\nIngrese nuevo sueldo: ");
     fflush(stdin);
-    scanf("%d", &sueldo);
+    gets(sueldo);
 
-    while(sueldo<0)
+    esNumero = validarNumero(sueldo);
+
+    while(esNumero==0)
     {
-        printf("\nEl sueldo debe ser mayor a 0. Ingrese nuevo sueldo: ");
+        printf("\nSueldo invalido. Ingrese nuevamente: ");
         fflush(stdin);
-        scanf("%d", &sueldo);
+        gets(sueldo);
+
+        esNumero = validarNumero(sueldo);
     }
 
-    setteo = employee_setSueldo(this, sueldo);
+    sueldoInt = atoi(sueldo);
+
+    setteo = employee_setSueldo(this, sueldoInt);
 
     if(setteo==0)
     {
@@ -425,6 +454,7 @@ int validarNumero(char numero[])
 {
     int i;
     int len;
+    int numeroInt;
     int esNumero = 1;
 
     len = strlen(numero);
@@ -436,6 +466,13 @@ int validarNumero(char numero[])
             esNumero = 0;
             break;
         }
+    }
+
+    numeroInt = atoi(numero);
+
+    if(numeroInt<0)
+    {
+        esNumero = 0;
     }
 
     return esNumero;

@@ -171,6 +171,13 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
         fflush(stdin);
         scanf("%d", &indice);
 
+        while(indice<1 || indice>len)
+        {
+            printf("\n\nIndice invalido ingrese nuevamente: ");
+            fflush(stdin);
+            scanf("%d", &indice);
+        }
+
         empleadoModificar = ll_get(pArrayListEmployee, indice-1);
 
         do {
@@ -233,19 +240,34 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
         fflush(stdin);
         scanf("%d", &indice);
 
+        while(indice<1 || indice>len)
+        {
+            printf("\n\nIndice incorrecto. Ingrese nuevamente: ");
+            fflush(stdin);
+            scanf("%d", &indice);
+        }
+
         empleadoEliminar = ll_get(pArrayListEmployee, indice-1);
 
         printf("\nEsta por eliminar el siguiente empleado:\n\n");
         imprimirUnEmpleado(empleadoEliminar);
-        printf("Desea continuar?\n\n1.Si\n2.No\n\n");
+        printf("Desea continuar?\n\n1.Si\n2.No\n\nOpcion: ");
         fflush(stdin);
         scanf("%d", &opcion);
 
-        printf("\n##Empleado eliminado:\n\n");
-        imprimirUnEmpleado(empleadoEliminar);
+        while(opcion!=1 && opcion!=2)
+        {
+            printf("Desea continuar?\n\n1.Si\n2.No\n\nOpcion: ");
+            fflush(stdin);
+            scanf("%d", &opcion);
+        }
+
 
         if(opcion==1)
         {
+            printf("\n##Empleado eliminado:\n\n");
+            imprimirUnEmpleado(empleadoEliminar);
+
             ll_remove(pArrayListEmployee, indice-1);
         }
     }
@@ -314,29 +336,46 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
     int opcion;
     int orden;
+    int len;
 
-    printf("\nOrdenar por:\n\n1.ID\n2.Nombre\n3.Horas Trabajadas\n4.Sueldo\n\nOpcion: ");
-    fflush(stdin);
-    scanf("%d", &opcion);
+    len = ll_len(pArrayListEmployee);
 
-    switch(opcion)
+    if(len>1)
     {
-        case 1:
-        orden = ordenar();
-        ll_sort(pArrayListEmployee, employee_compareById, orden);
-        break;
-        case 2:
-        orden = ordenar();
-        ll_sort(pArrayListEmployee, employee_compareByNombre, orden);
-        break;
-        case 3:
-        orden = ordenar();
-        ll_sort(pArrayListEmployee, employee_compareByHorasTrabajadas, orden);
-        break;
-        case 4:
-        orden = ordenar();
-        ll_sort(pArrayListEmployee, employee_compareBySueldo, orden);
-        break;
+        printf("\nOrdenar por:\n\n1.ID\n2.Nombre\n3.Horas Trabajadas\n4.Sueldo\n\nOpcion: ");
+        fflush(stdin);
+        scanf("%d", &opcion);
+
+        while(opcion<1 || opcion>4)
+        {
+            printf("\nOrdenar por:\n\n1.ID\n2.Nombre\n3.Horas Trabajadas\n4.Sueldo\n\nOpcion: ");
+            fflush(stdin);
+            scanf("%d", &opcion);
+        }
+
+        switch(opcion)
+        {
+            case 1:
+            orden = ordenar();
+            ll_sort(pArrayListEmployee, employee_compareById, orden);
+            break;
+            case 2:
+            orden = ordenar();
+            ll_sort(pArrayListEmployee, employee_compareByNombre, orden);
+            break;
+            case 3:
+            orden = ordenar();
+            ll_sort(pArrayListEmployee, employee_compareByHorasTrabajadas, orden);
+            break;
+            case 4:
+            orden = ordenar();
+            ll_sort(pArrayListEmployee, employee_compareBySueldo, orden);
+            break;
+        }
+    }
+    else
+    {
+        printf("\n\nDebe ingresar al menos dos empleados!!!");
     }
 
     return 1;
@@ -432,7 +471,7 @@ int menu()
     fflush(stdin);
     scanf("%d", &opcion);
 
-    while(opcion<1 || opcion>10)
+    while(!(opcion>0 && opcion<11))
     {
         printf("Opcion invalida. Ingrese opcion: ");
         fflush(stdin);

@@ -1,5 +1,7 @@
 #ifndef employee_H_INCLUDED
 #define employee_H_INCLUDED
+#include "Controller.h"
+
 typedef struct
 {
     int id;
